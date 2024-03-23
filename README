@@ -160,6 +160,9 @@ Input
 
 Display and Debug
 done
+    # 1: get rid of trailing 0's
+    # 2: change numerical to ascii characters
+    # 4: combine into one string
 200: x, _
     show display
     show display options 1, 2, 4

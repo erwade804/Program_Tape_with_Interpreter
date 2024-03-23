@@ -20,9 +20,8 @@ def interpret():
     # get rid of anything after the // symbol
     # that will be the comment for the language
 
-    linesString = "tape = ["
+    linesString = "tape = [\n    "
     for i in lines:
-        linesString += "\n    "
         if "set reg to ram " in i:  # 16
             linesString += f'16, {i.split(" ")[-1]}, 0'
         elif "set ram " in i and " to reg" in i:
@@ -80,7 +79,8 @@ def interpret():
             linesString += "255, 0, 0"
         else:
             linesString += i
-        linesString += ","
+            continue
+        linesString += ",\n    "
     linesString += "\n]\n"
     f = open("compiledCode.py", "w")
     f.write(linesString)
@@ -89,6 +89,8 @@ def interpret():
 
 def removeWhiteSpace(string):
     while string[-1] == " ":
+        if string == " " or string == "":
+            return ""
         string = string[0:-1]
     return string
 

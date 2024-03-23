@@ -1,17 +1,14 @@
+set reg to 0
+set ram 0 to 97
 
-set display 0 to 72
-set display 1 to 101
-set display 2 to 108
-set display 3 to 108
-set display 4 to 111
-set display 5 to 44
-set display 6 to 32
-set display 7 to 87
-set display 8 to 111
-set display 9 to 114
-set display 10 to 108
-set display 11 to 100
-set display 12 to 33
+set jump point
+set display 0 to ram 0
+   // 1 gets rid of trailing 0's
+   // 2 makes it go to ascii
+   // 4 combines everything into one string to remove list
 show display options 1, 2, 4
+add 1 to ram 0
+set reg to ram 0
+jump if != 123
 
 end

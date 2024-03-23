@@ -21,6 +21,7 @@ ram = [0 for i in range(10)]
 display = [0 for i in range(32)]
 
 
+
 def operatingSystem():
     global register
     global tape
@@ -30,6 +31,7 @@ def operatingSystem():
     print("start")
     debug = False
     i = 0
+    output = open("output.txt", "w")
     while True:
         # add to index of next
         if tape[i] == 1:
@@ -204,7 +206,7 @@ def operatingSystem():
         if tape[i] == 200:
             if debug:
                 print("show display")
-            showDisplay(tape[i+1])
+            output.write(showDisplay(tape[i+1]) + "\n")
         if tape[i] == 201:
             if debug:
                 print("show tape")
@@ -232,6 +234,7 @@ def operatingSystem():
             print("exited")
             return  # exit out of loop
         i += 3
+    output.close()
 
 
 """
@@ -272,7 +275,6 @@ def showDisplay(x):
     # 2: change numerical to ascii characters
     # 4: combine into one string
     temp = display.copy()
-    # print(temp)
     if x & 1 == 1:
         while len(temp) != 0 and temp[-1] == 0:
             temp.pop()
@@ -286,6 +288,8 @@ def showDisplay(x):
         temp = temp2
     # display requested frame
     print(temp)
+    # return for output file
+    return str(temp)
 
 
 def wait(timeToWait):
@@ -318,4 +322,4 @@ def showTape(tape):
 
 
 operatingSystem()
-# print(tape)
+
