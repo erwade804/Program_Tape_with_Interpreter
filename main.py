@@ -64,6 +64,14 @@ def operatingSystem():
             if debug:
                 print("update display " + str(tape[i+1]) + " to " + str(tape[i+2]))
             updateDisplay(tape[i+1], tape[i+2])
+        # set display to ram series
+        if tape[i] == 31:
+            if debug:
+                print("update display through ram " + str(tape[i+1]) +"-"+str(tape[i+1]+9))
+            for k in range(10):
+                print("i: " + str(i))
+                print("tape: "+str(tape[i+1]))
+                display[k+tape[i+1]] = ram[k]
         # clear display index
         if tape[i] == 6:
             if debug:
@@ -203,6 +211,14 @@ def operatingSystem():
             i = tape[i+1]
             if debug:
                 print("jump complete")
+        if tape[i] == 170:
+            if debug:
+                print("number input to ram " + str(tape[i+1]))
+            ram[tape[i+1]] = int(input())
+        if tape[i] == 171:
+            if debug:
+                print("char input to ram " + str(tape[i+1]))
+            ram[tape[i+1]] =ord(input())
         if tape[i] == 200:
             if debug:
                 print("show display")
@@ -265,6 +281,8 @@ def div(k, j):
 def toAlphanumeric(k):
     return chr(k)
 
+def toNum(k):
+    return ord(k)
 
 def updateDisplay(k, j):
     display[k] = j

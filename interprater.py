@@ -24,6 +24,12 @@ def interpret():
     for i in lines:
         if "set reg to ram " in i:  # 16
             linesString += f'16, {i.split(" ")[-1]}, 0'
+        elif "set display to ram start " in i:
+            linesString += f'31, {i.split(" ")[-1]}, 0'
+        elif "input char to ram " in i:
+            linesString += f'171, {i.split(" ")[-1]}, 0'
+        elif "input num to ram " in i:
+            linesString += f'170, {i.split(" ")[-1]}, 0'
         elif "set ram " in i and " to reg" in i:
             linesString += f'13, {i.split("ram ")[-1].split(" ")[0]}, 0'
         elif "add " in i and " to tape " in i:

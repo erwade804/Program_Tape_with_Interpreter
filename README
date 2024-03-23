@@ -35,7 +35,9 @@ done
 30: x, y
     set display index x to y
     set display 0 to 4
-
+31: x, _
+    set display to ram from display 4 - 13
+    set display to ram start 4
 
 
 Ram Manipulation
