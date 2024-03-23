@@ -1,6 +1,6 @@
 import math
 import time
-import program
+import compiledCode
 
 # storage of 1000 bytes
 global tape
@@ -8,7 +8,8 @@ global register
 global jumpPoint
 global display
 global ram
-tape = program.tape
+
+tape = compiledCode.tape
 register = 0
 
 TAPE_LENGTH = 999
@@ -25,12 +26,11 @@ def operatingSystem():
     global tape
     global ram
     global display
+    global jumpPoint
+    print("start")
     debug = False
     i = 0
     while True:
-        # print(register)
-        if register == 10:
-            break
         # add to index of next
         if tape[i] == 1:
             if debug:
@@ -177,7 +177,30 @@ def operatingSystem():
                 if debug:
                     print("jump completed")
                 continue
-
+        if tape[i] == 106:
+            if debug:
+                print("set jump point to current position: " + str(i))
+            jumpPoint = i+3
+        if tape[i] == 107:
+            if debug:
+                print("set jump point to " + str(tape[i+1]))
+            jumpPoint = tape[i+1]
+        if tape[i] == 108:
+            if register != tape[i+1]:
+                if debug:
+                    print("jump to last jump point")
+                i = jumpPoint
+                if debug:
+                    print("jump completed")
+                continue
+            if debug:
+                print("did not jump, reg != " + str(tape[i+1]))
+        if tape[i] == 110:
+            if debug:
+                print("jump to " + str(tape[i+1]))
+            i = tape[i+1]
+            if debug:
+                print("jump complete")
         if tape[i] == 200:
             if debug:
                 print("show display")
@@ -202,9 +225,14 @@ def operatingSystem():
         if tape[i] == 210:
             debug = tape[i+1] == 0
 
+        if tape[i] == 211:
+            os.system('cls' if os.name == 'nt' else 'clear')
+
         if tape[i] == 255:
-            return
+            print("exited")
+            return  # exit out of loop
         i += 3
+
 
 """
     These are the functions that the tape will use to determine what to do

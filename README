@@ -3,15 +3,19 @@
 Instruction Set
 
 Tape Manipulation
+done
 1: x, y
     add y to index x on tape
     add 2 to tape 3
+done
 2: x, y
     subtract y from index x on tape
     subtract 2 from tape 3
+done
 3: x, y
     multiply y to index x on tape
     multiply 2 to tape 3
+
 4: x, y
     divide index x by y on tape
     divide 2 from tape 3
@@ -19,12 +23,15 @@ Tape Manipulation
 
 
 Display Manipulation
+done
 5: x, y
     set display index x to ram index y
     set display 0 to ram 1
+done
 6: x, _
     clear display index x
     clear display 0
+done
 30: x, y
     set display index x to y
     set display 0 to 4
@@ -32,58 +39,73 @@ Display Manipulation
 
 
 Ram Manipulation
+done
 7: x, y
     set ram index x to y
     set ram 0 to 1
+done
 8: x, _
     clear ram index x
     clear ram 0
+done
 9: x, y
     add y to ram index x
     add 1 to ram 0
+done
 10: x, y
     subtract y from ram index x
     subtract 1 from ram 0
+done
 11: x, y
     multiply y to ram index x
     multiply 2 to ram 3
+done
 12: x, y
     divide ram index x by y
     divide 2 from ram 3
+done
 13: x, _
     set ram index x to register
     set ram 0 to reg
 
 
 Register
+done
 14: x, _
     set register to x
     set reg to 4
+done
 15: _, _
     clear register
     clear reg
+done
 16: x, _
     set register to index x of ram
     set reg to ram 4
+
 17: x, _
-    add tape index x to register
-    add tape x to reg
+    add ram index x to register
+    add ram x to reg
+
 18: x, _
     subtract ram index x from register
     subtract ram 3 from register
+done
 19: x, _
     add x to register
     add 2 to reg
 
 
-
 Index Manipulation
+
 20: x, _
     set index to x
     set index to 0
+
 21: x, _
     set index to ram x
     set index to ram 3
+
 22: _, _
     set index to register
     set index to reg
@@ -91,62 +113,83 @@ Index Manipulation
 
 
 Jumps
+
 100: x, y
     jump to x if y > register
     jumpif 400, < 4
+
 101: x, y
     jump to x if y < register
     jumpif 400, > 4
+
 102: x, y
     jump to x, if y == register
     jumpif 400, == 4
+
 103: x, y
     jump to x, if y != register
     jumpif 400, != 4
+
 106: _, _
     set jump point to current location
     set jump point
+
 107: x, _
     set jump point to x
     set jump point x
+
 108: _, _
     jump to last jump location
     return jump
+
 110: x, _
     jump to x
     jump to x
 
 
 Input
+
 170: x, _
     put input number into ram index x
     input num to ram 2
+
 171: x, _
     put input character into ram index x
     input char to ram 2
 
+
 Display and Debug
+done
 200: x, _
     show display
     show display options 1, 2, 4
+
 201: _, _
     show tape
     show tape
+
 202: x, _
     show ram based on x
     show ram
+
 203: _, _
     show register
     show reg
+
 205: _, _
     print new line
     print nl
+
 210: x, _
     show debug
     show debug
 
+211: _, _
+    clear terminal
+    clear terminal
 
 END
+done
 255: _, _
     end program run
     end

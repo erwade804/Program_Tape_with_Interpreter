@@ -20,8 +20,8 @@ tape = [
 ]
 """
 
+# working for loop
 tape = [
-
     # SET UP WORK
     # register to 0
     14, 0, 0,
@@ -43,7 +43,7 @@ tape = [
 
     # end program
     255, 0, 0,
-
-
-
 ]
+
+
+
